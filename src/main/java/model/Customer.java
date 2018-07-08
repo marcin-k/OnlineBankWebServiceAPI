@@ -32,6 +32,12 @@ public class Customer {
     }
 
     //TODO: sort out adding new accounts and getting a specific account
+    //creates new account and adds it to array list of accounts
+    public void createNewAccount(double deposit){
+        Account account = new Account(deposit);
+        accounts.add(account);
+    }
+    
     
 //------------------------------Getters-----------------------------------------
     public String getName() {
@@ -53,6 +59,11 @@ public class Customer {
     public String getLogin() {
         return login;
     }
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+    
 //------------------------------Setters-----------------------------------------    
     public void setEmail(String email) {
         this.email = email;
