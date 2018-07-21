@@ -1,4 +1,4 @@
-package model;
+package com.mycompany.onlinebankwebserviceapi.model;
 
 import java.util.ArrayList;
 
@@ -18,8 +18,7 @@ public class Customer {
     private String login;
     //stores customer's password
     private String password;
-    //stores reverences to customer's accounts
-    private ArrayList<Account> accounts;
+
 
     //constructor, setting up all fields except the accounts
     public Customer(String name, String address, String email, String login, String password) {
@@ -28,16 +27,13 @@ public class Customer {
         this.email = email;
         this.login = login;
         this.password = password;
-        accounts = new ArrayList<Account>();
     }
 
-    //TODO: sort out adding new accounts and getting a specific account
-    //creates new account and adds it to array list of accounts
-    public void createNewAccount(double deposit){
-        Account account = new Account(deposit);
-        accounts.add(account);
+    public Customer() {
     }
+
     
+ 
     
 //------------------------------Getters-----------------------------------------
     public String getName() {
@@ -60,10 +56,7 @@ public class Customer {
         return login;
     }
 
-    public ArrayList<Account> getAccounts() {
-        return accounts;
-    }
-    
+   
 //------------------------------Setters-----------------------------------------    
     public void setEmail(String email) {
         this.email = email;

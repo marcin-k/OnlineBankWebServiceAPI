@@ -1,4 +1,4 @@
-package model;
+package com.mycompany.onlinebankwebserviceapi.model;
 
 import java.time.LocalDate;
 
@@ -16,18 +16,24 @@ public class Transaction {
     private String description;
     //post trnsaction balance
     private double postTransactionBalance;
+    //reference account buner it belongs to
+    private int accountNumber;
 
     //Constructor
     public Transaction(TransactionType transactionType, String description, 
-            double postTransactionBalance) {
+            double postTransactionBalance, int accountNumber) {
         
         this.transactionType = transactionType;
         //uses the current date for a trnasaction
         this.date = LocalDate.now();
         this.description = description;
         this.postTransactionBalance = postTransactionBalance;
+        this.accountNumber = accountNumber;
     }
 
+    public Transaction() {
+    }
+    
 //------------------------------Getters-----------------------------------------    
     public TransactionType getTransactionType() {
         return transactionType;
@@ -43,6 +49,10 @@ public class Transaction {
 
     public double getPostTransactionBalance() {
         return postTransactionBalance;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
     }
     
 //------------------------------Setters----------------------------------------- 
@@ -62,4 +72,9 @@ public class Transaction {
     public void setPostTransactionBalance(double postTransactionBalance) {
         this.postTransactionBalance = postTransactionBalance;
     }
+
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    
 }
