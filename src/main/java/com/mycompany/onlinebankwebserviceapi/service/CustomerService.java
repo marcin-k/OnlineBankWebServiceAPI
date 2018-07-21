@@ -15,8 +15,6 @@ public class CustomerService {
     public static int BRANCH_CODE = 770777;
     
     public CustomerService () {
-        System.out.println("-------------0-----------------\n"
-                    + "------------------------------\n");
         //for testing
         if (init) {
             Customer u1 = new Customer("bob", "cork", "bob@bob.com", "bob1", "test");
@@ -28,8 +26,6 @@ public class CustomerService {
             list.add(u3);
 
             init = false;
-            System.out.println("-------------1-----------------\n"
-                    + "------------------------------\n");
         }
     }
     //to be commented out     

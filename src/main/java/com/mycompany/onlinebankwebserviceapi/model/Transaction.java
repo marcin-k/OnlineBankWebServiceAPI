@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Transaction {
     
     //stores type of a transaction as an enum
-    private TransactionType transactionType;
+    private int transactionType;
     //stores stransaction date
     private LocalDate date;
     //trnsacation's description
@@ -18,10 +18,12 @@ public class Transaction {
     private double postTransactionBalance;
     //reference account buner it belongs to
     private int accountNumber;
+    //amount of money
+    private double amount;
 
     //Constructor
-    public Transaction(TransactionType transactionType, String description, 
-            double postTransactionBalance, int accountNumber) {
+    public Transaction(int transactionType, String description, 
+            double postTransactionBalance, int accountNumber, double amount) {
         
         this.transactionType = transactionType;
         //uses the current date for a trnasaction
@@ -29,13 +31,22 @@ public class Transaction {
         this.description = description;
         this.postTransactionBalance = postTransactionBalance;
         this.accountNumber = accountNumber;
+        this.amount = amount;
     }
+
+    public Transaction(String description, int accountNumber, double amount) {
+        this.description = description;
+        this.accountNumber = accountNumber;
+        this.amount = amount;
+    }
+    
+    
 
     public Transaction() {
     }
     
 //------------------------------Getters-----------------------------------------    
-    public TransactionType getTransactionType() {
+    public int getTransactionType() {
         return transactionType;
     }
 
@@ -54,10 +65,14 @@ public class Transaction {
     public int getAccountNumber() {
         return accountNumber;
     }
+
+    public double getAmount() {
+        return amount;
+    }
     
 //------------------------------Setters----------------------------------------- 
 
-    public void setTransactionType(TransactionType transactionType) {
+    public void setTransactionType(int transactionType) {
         this.transactionType = transactionType;
     }
 
@@ -75,6 +90,10 @@ public class Transaction {
 
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
     
 }

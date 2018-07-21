@@ -57,10 +57,10 @@ public class CustomerResource {
     }
     
 //-----------Return all transactions for an account number----------------------   
-//    @Path("/{userLogin}/accounts/{accNum}")
-//    public TransactionResource getTransactionResources(@PathParam("accNum") 
-//            int accNum) {
-////        System.out.println("*** User login "+userLog+" ***");
-//        return new TransactionResource(accNum);
-//    }
+    @Path("/{userLogin}/accounts/{accNum}")
+    public TransactionResource getTransactionResources(@PathParam("accNum") 
+            int accNum) {
+//        System.out.println("*** input "+accNum+" ***");
+        return new TransactionResource(accNum);
+    }
 }

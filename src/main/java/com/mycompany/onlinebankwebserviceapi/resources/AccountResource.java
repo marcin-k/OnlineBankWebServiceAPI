@@ -11,9 +11,9 @@ import javax.ws.rs.PathParam;
  *
  * @author marcin
  */
-@Path("/")
+@Path("/accounts")
 public class AccountResource {
-    static AccountService accService = new AccountService();
+    public static AccountService accService = new AccountService();
     String userLogin="";
 
     public AccountResource() {
