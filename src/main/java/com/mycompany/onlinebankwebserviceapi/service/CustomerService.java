@@ -8,11 +8,7 @@ public class CustomerService {
     public static List<Customer> list = new ArrayList<>();
     public static boolean init = true;
     
-    //stores the last account number created so any new account gets an
-    //incremented value of that account   
-    public static int LAST_ACCOUNT_CREATED = 100000000;
-    //stores branch code
-    public static int BRANCH_CODE = 770777;
+
     
     public CustomerService () {
         //for testing

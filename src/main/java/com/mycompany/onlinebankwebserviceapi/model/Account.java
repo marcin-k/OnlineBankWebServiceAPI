@@ -18,17 +18,21 @@ public class Account {
     //customer's id that the account belong to
     private String customerId;
     
-
+    //stores the last account number created so any new account gets an
+    //incremented value of that account   
+    public static int LAST_ACCOUNT_CREATED = 100000000;
+    //stores branch code
+    public static int BRANCH_CODE = 770777;
 
     //the constructor will use the initial deposit to initialize balance
     //the sort code will use the static value from Bank class
     //account number will be incremented number from Bank class
-    public Account(double balance, String customerLogin) {
-        this.sortCode = CustomerService.BRANCH_CODE;
-        this.accountNumber = CustomerService.LAST_ACCOUNT_CREATED+1;
-        CustomerService.LAST_ACCOUNT_CREATED = accountNumber;
+    public Account(double balance, String customerId) {
+        this.sortCode = BRANCH_CODE;
+        this.accountNumber = LAST_ACCOUNT_CREATED+1;
+        LAST_ACCOUNT_CREATED = accountNumber;
         this.balance = balance;
-        this.customerId = customerLogin;
+        this.customerId = customerId;
     }
 
     public Account() {

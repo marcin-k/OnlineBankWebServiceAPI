@@ -21,7 +21,7 @@ import com.mycompany.onlinebankwebserviceapi.service.CustomerService;
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerResource {
     
-    CustomerService customerService = new CustomerService();
+    public static CustomerService customerService = new CustomerService();
         
     
 //-------------------------Creates a new customer-------------------------------

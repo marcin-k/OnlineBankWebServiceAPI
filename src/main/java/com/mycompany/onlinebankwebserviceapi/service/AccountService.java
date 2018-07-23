@@ -1,6 +1,10 @@
 package com.mycompany.onlinebankwebserviceapi.service;
 
 import com.mycompany.onlinebankwebserviceapi.model.Account;
+import static com.mycompany.onlinebankwebserviceapi.model.Account.BRANCH_CODE;
+import static com.mycompany.onlinebankwebserviceapi.model.Account.LAST_ACCOUNT_CREATED;
+import com.mycompany.onlinebankwebserviceapi.model.Customer;
+import com.mycompany.onlinebankwebserviceapi.resources.CustomerResource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +42,23 @@ public class AccountService {
 //-----------Return all accounts for a customer with passed in login------------        
     public List<Account> getAll() {
         return listAcc;
+    }
+    
+//-----------Creates a new account for a customer-------------------------------        
+    //to invoke use:
+    //curl -X POST -H "Content-Type:application/json" -d 
+    //"{\"balance\": \"220.0\",\"customerId\": \"bob1\"}" http://localhost:49000/api/accounts/new
+    public String createAnAccount(Account a) {
+        //checks if the customer with id exist
+        for(Customer c :CustomerResource.customerService.getAllUsers()){
+            if(c.getLogin().equalsIgnoreCase(a.getCustomerId())){
+                a.setAccountNumber(Account.LAST_ACCOUNT_CREATED+1);
+                Account.LAST_ACCOUNT_CREATED = LAST_ACCOUNT_CREATED+1;
+                a.setSortCode(Account.BRANCH_CODE);
+                listAcc.add(a);
+                return "Account has been created.";
+            }
+        }    
+        return "Account was not created, user id incorrect";
     }
 }
