@@ -16,7 +16,7 @@ public class Account {
     //account's balance
     private double balance;
     //customer's id that the account belong to
-    private String customerLogin;
+    private String customerId;
     
 
 
@@ -28,7 +28,7 @@ public class Account {
         this.accountNumber = CustomerService.LAST_ACCOUNT_CREATED+1;
         CustomerService.LAST_ACCOUNT_CREATED = accountNumber;
         this.balance = balance;
-        this.customerLogin = customerLogin;
+        this.customerId = customerLogin;
     }
 
     public Account() {
@@ -49,7 +49,7 @@ public class Account {
     }
 
     public String getCustomerId() {
-        return customerLogin;
+        return customerId;
     }
     
 //------------------------------Setters-----------------------------------------    
@@ -66,7 +66,7 @@ public class Account {
     }
 
     public void setCustomerId(String customerLogin) {
-        this.customerLogin = customerLogin;
+        this.customerId = customerLogin;
     }
    
 }

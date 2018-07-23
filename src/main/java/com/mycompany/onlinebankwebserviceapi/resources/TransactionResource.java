@@ -50,11 +50,10 @@ public class TransactionResource {
     //<ACC NUMBER FROM>/<ACC NUMBER TO>/<AMOUNT>
     @GET
     @Path("/transfer/{accFrom}/{accTo}/{amount}/")
-    public void transfer(@PathParam("accFrom") int accFrom,@PathParam("accTo") 
+    public String transfer(@PathParam("accFrom") int accFrom,@PathParam("accTo") 
             int accTo, @PathParam("amount") double amount ){
         
-        System.out.println("accFrom: "+accFrom+"\naccTo: "+accTo+""
-                + "\nAmount: "+ amount);
+        return trnsService.transferMoney(accFrom, accTo, amount);
     }
     
 }

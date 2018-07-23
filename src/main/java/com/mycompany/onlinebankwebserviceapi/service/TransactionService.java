@@ -84,12 +84,46 @@ public class TransactionService {
     
 //-------------Transfers funds from one account to another ---------------------
     public String transferMoney(int accountFrom, int accountTo, double amount){
-        //check if both exist
-        
-        //check if from has sufcient funding
-        
-        
-        
-        return "";
+//check if both exist
+        Account fromAcc = null;
+        Account toAcc = null;
+        //if the same account number is eneter as from and to 
+        if(accountFrom == accountTo){
+            return "The accounts from and to are the same account!";            
+        }
+        //loops thorugh all accounts in the system to check
+        //if both exist and if from has sufcient funding
+        for(Account a :AccountResource.accService.getAll()){
+            if(a.getAccountNumber()==accountFrom){
+                fromAcc = a;
+                //not sufficient funds on account 
+                if(a.getBalance()<amount){
+                    return "Not sufficient balance to perform "
+                            + "this operation";
+                }
+            }
+            else if(a.getAccountNumber()==accountTo){
+                toAcc = a;
+            }
+        }
+        //if non of them exist
+        if(fromAcc == null & toAcc ==null){
+            return "Account numbers that you entered are incorect";
+        }
+        else if(fromAcc == null & toAcc !=null){
+            return "Account number for account from is incorect";
+        }
+        else if(fromAcc != null & toAcc ==null){
+            return "Account number for account to is incorect";
+        }
+        else{
+           //creates debit transaction on from acc 
+           createDebitTransaction(new Transaction(("Transfer to: "+
+                   toAcc.getAccountNumber()), fromAcc.getAccountNumber(), amount));
+           //creates credit transaction on to acc
+           createCreditTransaction(new Transaction(("Transfer from: "+
+                   toAcc.getAccountNumber()), toAcc.getAccountNumber(), amount));
+           return "Transfer completed sucessfully";     
+        }
     }
 }
