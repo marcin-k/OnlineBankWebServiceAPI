@@ -1,6 +1,7 @@
 package com.mycompany.onlinebankwebserviceapi.resources;
 
 
+import com.mycompany.onlinebankwebserviceapi.model.Account;
 import java.util.List;
 import javax.ws.rs.Consumes;
 
@@ -47,7 +48,13 @@ public class CustomerResource {
     public Customer getUser(@PathParam("userLogin") String login) {
         return customerService.getUserByLogin(login);
     }
-
+//-----------------Validates customer's username and password-------------------
+    @GET
+    @Path("/{userLogin}/{userPassword}")
+    public String login(@PathParam("userLogin") String login,@PathParam
+        ("userPassword") String pass) {
+        return customerService.login(login, pass);
+    }
 //-----------Return all accounts for a customer with passed in login------------   
     @Path("/{userLogin}/accounts")
     public AccountResource getAccountsResources(@PathParam("userLogin") 
@@ -57,10 +64,9 @@ public class CustomerResource {
     }
     
 //-----------Return all transactions for an account number----------------------   
-    @Path("/{userLogin}/accounts/{accNum}")
+    @Path("/{userLogin}/accounts/{accNum}/transactions")
     public TransactionResource getTransactionResources(@PathParam("accNum") 
             int accNum) {
-//        System.out.println("*** input "+accNum+" ***");
         return new TransactionResource(accNum);
     }
 }

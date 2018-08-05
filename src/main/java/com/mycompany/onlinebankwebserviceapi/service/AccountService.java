@@ -4,7 +4,9 @@ import com.mycompany.onlinebankwebserviceapi.model.Account;
 import static com.mycompany.onlinebankwebserviceapi.model.Account.BRANCH_CODE;
 import static com.mycompany.onlinebankwebserviceapi.model.Account.LAST_ACCOUNT_CREATED;
 import com.mycompany.onlinebankwebserviceapi.model.Customer;
+import static com.mycompany.onlinebankwebserviceapi.resources.AccountResource.accService;
 import com.mycompany.onlinebankwebserviceapi.resources.CustomerResource;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  * @author marcin
  */
 public class AccountService {
+    private static DecimalFormat df2 = new DecimalFormat(".##");
     public static List<Account> listAcc = new ArrayList<>();
     public static boolean init = true;
     
@@ -28,6 +31,16 @@ public class AccountService {
             init = false;
         }
     }
+ //-----------Return account for with a number provided-------------------------
+    public Account getAccount(int accNumber) {
+        Account acc = new Account();
+        for(Account ad: listAcc){
+            if(ad.getAccountNumber()==accNumber){
+                acc = ad;
+            }                
+        }
+        return acc;
+    } 
     
 //-----------Return all accounts for a customer with passed in login------------        
     public List<Account> getAllAccountsForCustomer(String login) {
@@ -60,5 +73,16 @@ public class AccountService {
             }
         }    
         return "Account was not created, user id incorrect";
+    }
+    
+    //
+    public String totalBalanceForUser(String login){
+        double total = 0;
+        for(Account a: getAll()){
+            if(a.getCustomerId().equalsIgnoreCase(login)){
+                total+=a.getBalance();
+            }
+        }
+        return df2.format(total)+"";
     }
 }

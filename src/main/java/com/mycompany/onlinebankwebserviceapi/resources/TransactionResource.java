@@ -32,7 +32,13 @@ public class TransactionResource {
     @GET
     public List<Transaction> getTransactions() {
         return trnsService.getAllTransactionsForAccount(accNumber);
-    }    
+    }
+    
+    @Path("/all")
+    @GET
+    public List<Transaction> getAllTransactions() {
+        return trnsService.getAll();
+    }  
     
     @POST
     @Path("/credit")

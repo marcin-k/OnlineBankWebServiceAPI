@@ -30,7 +30,34 @@ public class AccountResource {
     @GET
     public List<Account> getAccounts() {
         return accService.getAllAccountsForCustomer(userLogin);
-    }    
+    }  
+    
+    @Path("/all")
+    @GET
+    public List<Account> getAllAccounts() {
+        return accService.getAll();
+    } 
+    
+    @Path("/sortcode")
+    @GET
+    public String getSortCode() {
+        return Account.BRANCH_CODE+"";
+    } 
+    
+    @Path("/total/{login}")
+    @GET
+    public String getTotalBalanceFromAllAccunts(@PathParam("login") 
+            String login) {
+           return accService.totalBalanceForUser(login);
+    } 
+    
+    //-----------Return Account with account number provided--------------------
+    @Path("/{accNum}")
+    @GET
+    public Account getAccountDetails(@PathParam("accNum") 
+            int accNum) {
+        return accService.getAccount(accNum);
+    }
 
     @POST
     @Path("/new")

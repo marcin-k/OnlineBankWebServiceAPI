@@ -24,6 +24,11 @@ public class TransactionService {
             initThis = false;
         }
     }
+//----------Return all transactions for all accounts----------------------------        
+    public List<Transaction> getAll() {
+        return transactionList;
+    } 
+    
     
 //-----------Return all transactions for an account ----------------------------        
     public List<Transaction> getAllTransactionsForAccount(int accNumber) {

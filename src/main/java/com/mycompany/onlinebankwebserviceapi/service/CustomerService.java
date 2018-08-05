@@ -43,11 +43,7 @@ public class CustomerService {
         return "Customer added sucessfully";
     }
 //------------------------------------------------------------------------------ 
-    
-    
-    
-    
-    
+
     
     public Customer getUserByLogin(String login) {
         for (Customer u : getAllUsers()) {
@@ -66,6 +62,18 @@ public class CustomerService {
         list.remove(id-1);
         System.out.println("204 -  user id:" + String.valueOf(id) + " deleted");
         return u;
+    }
+    
+    public String login(String login, String password) {
+        for (Customer u : getAllUsers()) {
+            if (u.getLogin().equals(login)) {
+                if(u.getPassword().equals(password)){
+                    return "login successful";
+                }
+                return "inccorect password";
+            }
+        }
+        return "Inncorect Login";
     }
  
 }
