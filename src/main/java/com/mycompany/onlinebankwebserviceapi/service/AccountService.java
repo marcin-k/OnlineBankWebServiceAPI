@@ -1,25 +1,34 @@
 package com.mycompany.onlinebankwebserviceapi.service;
 
 import com.mycompany.onlinebankwebserviceapi.model.Account;
-import static com.mycompany.onlinebankwebserviceapi.model.Account.BRANCH_CODE;
 import static com.mycompany.onlinebankwebserviceapi.model.Account.LAST_ACCOUNT_CREATED;
 import com.mycompany.onlinebankwebserviceapi.model.Customer;
-import static com.mycompany.onlinebankwebserviceapi.resources.AccountResource.accService;
 import com.mycompany.onlinebankwebserviceapi.resources.CustomerResource;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+//This class is used to accomodate requestes made in AccountResource class
+//Class creates a two example accounts 
 /**
  *
- * @author marcin
+ * @authors 
+ *          Marcin Krzeminski – X17158851
+ *          Carlos Neia – X12116394
+ *          Kevin Shannon - X17160324
+ *          Joseph McDonnell - X17164761 
  */
 public class AccountService {
+    
+    //formatter to return the double with only 2 decimal places
     private static DecimalFormat df2 = new DecimalFormat(".##");
+    //stores all accounts in the system
     public static List<Account> listAcc = new ArrayList<>();
+    //used to initialize the constructor to load few example records into
+    //the system
     public static boolean init = true;
     
-//-------------------------------Init-------------------------------------------    
+//---------Initialisation Constructor-------------------------------------------    
     public AccountService () {
         System.out.print("constructing address service");
         if (init) {
@@ -75,7 +84,7 @@ public class AccountService {
         return "Account was not created, user id incorrect";
     }
     
-    //
+//-------Returns total from all accounts for a customer-------------------------    
     public String totalBalanceForUser(String login){
         double total = 0;
         for(Account a: getAll()){

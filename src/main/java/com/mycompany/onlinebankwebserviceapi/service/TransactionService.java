@@ -6,15 +6,24 @@ import com.mycompany.onlinebankwebserviceapi.resources.AccountResource;
 import java.util.ArrayList;
 import java.util.List;
 
+//This class is used to accomodate requestes made in TransactionResource class
+//Class creates a three cretid Transactions
 /**
  *
- * @author marcin
+ * @authors 
+ *          Marcin Krzeminski – X17158851
+ *          Carlos Neia – X12116394
+ *          Kevin Shannon - X17160324
+ *          Joseph McDonnell - X17164761 
  */
 public class TransactionService {
+    //stores all transactions in the system
     public static List<Transaction> transactionList = new ArrayList<>();
+    //used to initialize the constructor to load few example records into
+    //the system
     public static boolean initThis = true;
     
-//-------------------------------Init-------------------------------------------    
+//---------Initialisation Constructor-------------------------------------------    
     public TransactionService () {
         System.out.print("constructing address service");
         if (initThis) {
@@ -29,7 +38,6 @@ public class TransactionService {
         return transactionList;
     } 
     
-    
 //-----------Return all transactions for an account ----------------------------        
     public List<Transaction> getAllTransactionsForAccount(int accNumber) {
         List<Transaction> tempList = new ArrayList<>();
@@ -42,13 +50,14 @@ public class TransactionService {
     }
     
 //-----------------Credit transaction ------------------------------------------
-    //transaction type should be 0 for debit or 1 for credit, 
+    //transaction type should be -1 for debit or 1 for credit, 
     //to invoke use:
     //curl -X POST -H "Content-Type:application/json" -d "{\"description\": 
     //\"test2\",\"accountNumber\": \"100000001\",\"amount\": \"200\"}" 
     //http://localhost:49000/api/transactions/credit
     public String createCreditTransaction(Transaction t){
         t.setTransactionType(1);
+        //loops through all accounts to find account
         for(Account a :AccountResource.accService.getAll()){
             if(t.getAccountNumber()==a.getAccountNumber()){
                 double amount = a.getBalance()+t.getAmount();
@@ -62,13 +71,15 @@ public class TransactionService {
     }
 
 //-----------------Debit transaction -------------------------------------------    
-    //transaction type should be 0 for debit or 1 for credit, 
+    //transaction type should be -1 for debit or 1 for credit, 
     //to invoke use:
     //curl -X POST -H "Content-Type:application/json" -d "{\"description\": 
     //\"test2\",\"accountNumber\": \"100000001\",\"amount\": \"200\"}" 
     //http://localhost:49000/api/transactions/debit
     public String createDebitTransaction(Transaction t){
         t.setTransactionType(-1);
+        //loops through all accounts and checks if sufficient funds are
+        //available 
         for(Account a :AccountResource.accService.getAll()){
             if(t.getAccountNumber()==a.getAccountNumber()){
                 if(t.getAmount()>a.getBalance()){
@@ -89,7 +100,7 @@ public class TransactionService {
     
 //-------------Transfers funds from one account to another ---------------------
     public String transferMoney(int accountFrom, int accountTo, double amount){
-//check if both exist
+        //check if both exist
         Account fromAcc = null;
         Account toAcc = null;
         //if the same account number is eneter as from and to 

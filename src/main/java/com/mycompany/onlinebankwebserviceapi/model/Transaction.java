@@ -2,9 +2,14 @@ package com.mycompany.onlinebankwebserviceapi.model;
 
 import java.time.LocalDate;
 
+//Class used to represent Transaction blueprint
 /**
  *
- * @author marcin
+ * @authors 
+ *          Marcin Krzeminski – X17158851
+ *          Carlos Neia – X12116394
+ *          Kevin Shannon - X17160324
+ *          Joseph McDonnell - X17164761 
  */
 public class Transaction {
     

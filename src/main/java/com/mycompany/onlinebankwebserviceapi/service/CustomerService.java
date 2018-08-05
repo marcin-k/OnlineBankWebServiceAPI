@@ -4,12 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mycompany.onlinebankwebserviceapi.model.Customer;
 
+//This class is used to accomodate requestes made in CustomerResource class
+//Class creates a three customers
+/**
+ *
+ * @authors 
+ *          Marcin Krzeminski – X17158851
+ *          Carlos Neia – X12116394
+ *          Kevin Shannon - X17160324
+ *          Joseph McDonnell - X17164761 
+ */
 public class CustomerService {
+    //stores all customers in the system
     public static List<Customer> list = new ArrayList<>();
+    //used to initialize the constructor to load few example records into
+    //the system
     public static boolean init = true;
     
-
-    
+//---------Initialisation Constructor-------------------------------------------    
     public CustomerService () {
         //for testing
         if (init) {
@@ -24,7 +36,7 @@ public class CustomerService {
             init = false;
         }
     }
-    //to be commented out     
+//--------Returns all customers in the system-----------------------------------
     public List<Customer> getAllUsers() {
         return list;
     }
@@ -42,9 +54,7 @@ public class CustomerService {
         list.add(user);
         return "Customer added sucessfully";
     }
-//------------------------------------------------------------------------------ 
-
-    
+//----Returns a customer records for a customer with provided login-------------
     public Customer getUserByLogin(String login) {
         for (Customer u : getAllUsers()) {
             if (u.getLogin().equals(login)) {
@@ -53,17 +63,8 @@ public class CustomerService {
         }
         return null;
     }
-         
-    public Customer deleteUser(int id){
-        if (id <= 0) {
-            return null;
-        }
-        Customer u = list.get(id-1);
-        list.remove(id-1);
-        System.out.println("204 -  user id:" + String.valueOf(id) + " deleted");
-        return u;
-    }
-    
+       
+//----Validates a username and password-----------------------------------------    
     public String login(String login, String password) {
         for (Customer u : getAllUsers()) {
             if (u.getLogin().equals(login)) {
